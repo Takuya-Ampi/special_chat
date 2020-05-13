@@ -1,10 +1,10 @@
 import React from 'react';
+import { NameType } from '../../types/NameType';
 
-interface NameProps {
-  content: string;
-};
 
-export const Name: React.FC<NameProps> = props => {
+
+
+export const Name: React.FC<NameType> = props => {
   return (
     <h2>{props.content}</h2>
   )

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { InputHandler } from '../atoms/Input';
 import { Accordion } from '../organisms/Accordion';
 import { UserType } from '../../types/UserType';
 import axios from '../../apiMock';
@@ -7,7 +8,7 @@ import { MainLayout } from '../templates/MainLayout';
 
 export const Home: React.FC = () => {
   const [navigationElements, setNavigationElements] = useState<NavigationElementType[]>([]);
-  
+
   const [friends, setFriends] = useState<UserType[]>([]);
 
   const fetchNavigationElements = useCallback(async () => {
@@ -36,15 +37,23 @@ export const Home: React.FC = () => {
     };
   }, [fetchNavigationElements, fetchFriends]);
 
+  const searchInputRef = useRef({} as InputHandler);
+  const search = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log(searchInputRef.current.value());
+  };
+
 
   return (
 
     <MainLayout
-      pageTitle='ホーム'
+      pageTitle={'ホーム'}
       navigationElements={navigationElements}
+      onSearchClick={search}
+      ref={searchInputRef}
     >
       <div>
-        <Accordion users={friends}/>
+        <Accordion users={friends} />
       </div>
     </MainLayout>
   )
