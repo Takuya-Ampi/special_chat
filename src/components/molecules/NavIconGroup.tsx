@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IconType } from '../../types/IconType';
 import { Icon } from '../atoms/Icon';
 
-interface IconGroupProps {
-  icons: IconType[];
+interface IconProps {
+  src: string;
+  alt: string;
+};
+
+
+interface NavIconGroupProps {
+  icons: IconProps[];
 }
 
-export const IconGroup: React.FC<IconGroupProps> = props => {
+export const NavIconGroup: React.FC<NavIconGroupProps> = props => {
   return (
     <Div>
       {
@@ -16,14 +21,13 @@ export const IconGroup: React.FC<IconGroupProps> = props => {
             <div>
               <Icon src={icon.src} alt={icon.alt} width={24} height={24}/>
             </div>
-            )
-          })
-        }
+          )
+        })
+      }
     </Div>
   )
 }
 
 const Div = styled.div`
   display: flex;
-
 `;
